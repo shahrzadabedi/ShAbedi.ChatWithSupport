@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option csharp_namespace = "ShAbedi.ChatWithSupport";
+
+package chat;
+
+service ChatService {
+  rpc Chat (stream ChatMessage) returns (stream ChatMessage);
+  rpc FindSupport(UserRequest) returns (SupportResponse);
+  rpc GetCurrentAssignedUser(SupportRequest) returns (UserResponse);
+  rpc RegisterSupportClient(SupportRequest) returns (RegisterResponse);
+  rpc RegisterNormalClient(UserRequest) returns (RegisterResponse);
+}
+
+message ChatMessage {
+  string userId = 1;
+  string recipientId = 2;
+  string message = 3;
+}
+
+message UserRequest {
+  string userId = 1;
+}
+
+message SupportResponse {
+  string supportId = 1;
+}
+
+message SupportRequest {
+  string supportId = 1;
+}
+
+message UserResponse {
+  string userId = 1;
+}
+
+message RegisterResponse {
+   bool result = 1;
+}

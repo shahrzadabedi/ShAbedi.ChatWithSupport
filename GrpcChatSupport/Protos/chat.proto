@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "ShAbedi.ChatWithSupport";
+
+package chat;
+
+// The greeting service definition.
+service ChatService {
+  // Sends a greeting
+  rpc Chat (stream ChatMessage) returns (stream ChatMessage);
+}
+
+// The request message containing the user's name.
+message ChatMessage {
+  string user = 1;
+  string message = 2;
+}
